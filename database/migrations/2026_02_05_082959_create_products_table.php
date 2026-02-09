@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();                    // Clé primaire auto-incrémentée
             $table->string('name');          // VARCHAR(255)
             $table->text('description')->nullable();   // TEXT

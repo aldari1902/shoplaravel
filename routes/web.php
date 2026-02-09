@@ -64,4 +64,4 @@ Route::view('/contact', 'contact')
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
 
-Route::resource('posts', ProductController::class);
+Route::resource('products', ProductController::class);

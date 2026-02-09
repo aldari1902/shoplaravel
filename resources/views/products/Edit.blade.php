@@ -6,8 +6,8 @@
     <div class="form-container">
         <h1>Modifier le produit : {{ $product->name }}</h1>
 
-        {{-- Le formulaire envoie vers posts.update avec la méthode PUT --}}
-        <form action="{{ route('posts.update', $product->id) }}" method="POST">
+        {{-- Le formulaire envoie vers products.update avec la méthode PUT --}}
+        <form action="{{ route('products.update', $product->id) }}" method="POST">
 
             {{-- Protection CSRF --}}
             @csrf
@@ -89,7 +89,7 @@
             {{-- Boutons --}}
             <div>
                 <button type="submit" class="btn-primary">💾 Enregistrer les modifications</button>
-                <a href="{{ route('posts.index') }}" class="btn-secondary">Annuler</a>
+                <a href="{{ route('products.index') }}" class="btn-secondary">Annuler</a>
             </div>
         </form>
     </div>

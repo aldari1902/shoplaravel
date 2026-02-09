@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): Factory|View
     {
         $products = Product::where('active', true)
             ->orderBy('name')
             ->get();
 
-        return view('posts.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        return view('posts.create');
+        return view('products.create');
     }
 
     public function store(Request $request)
@@ -31,18 +33,18 @@ class ProductController extends Controller
         ]);
         $validated['active'] = $request->boolean('active');
         Product::create($validated);
-        return redirect()->route('posts.index')
+        return redirect()->route('products.index')
             ->with('success', 'Ça a enfin fonctionné ?????????');
     }
 
     public function show(Product $product)
     {
-        return view('posts.show', compact('product'));
+        return view('products.show', compact('product'));
     }
 
     public function edit(Product $product)
     {
-        return view('posts.edit', compact('product'));
+        return view('products.Edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
@@ -55,14 +57,14 @@ class ProductController extends Controller
         ]);
         $validated['active'] = $request->boolean('active');
         $product->update($validated);
-        return redirect()->route('posts.index')
+        return redirect()->route('products.index')
             ->with('success', 'Produit modifié avec succès !');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('posts.index')
+        return redirect()->route('products.index')
             ->with('success', 'Produit supprimé avec succès !');
     }
 }

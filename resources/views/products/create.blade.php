@@ -45,7 +45,7 @@
 <body>
 <h1>Créer un nouveau produit</h1>
 
-<form action="{{ route('posts.store') }}" method="POST">
+<form action="{{ route('products.store') }}" method="POST">
     @csrf
     <label for="name">Nom du produit :</label>
     <input type="text" id="name" name="name" placeholder="Ex: La signature de Martin" required>

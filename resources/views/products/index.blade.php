@@ -51,7 +51,7 @@
     <div class="products-container">
         <h1>Liste des produits</h1>
 
-        <a href="{{ route('posts.create') }}" class="btn-create">➕ Créer un produit</a>
+        <a href="{{ route('products.create') }}" class="btn-create">➕ Créer un produit</a>
 
         @if(isset($products) && $products->count() > 0)
             <table>
@@ -80,7 +80,7 @@
                             @endif
                         </td>
                         <td class="actions">
-                            <a href="{{ route('posts.edit', $product->id) }}" class="btn-edit">
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn-edit">
                                 ✏️ Modifier
                             </a>
                         </td>
@@ -89,7 +89,7 @@
                 </tbody>
             </table>
         @else
-            <p>Aucun produit pour le moment. <a href="{{ route('posts.create') }}">Créez-en un !</a></p>
+            <p>Aucun produit pour le moment. <a href="{{ route('products.create') }}">Créez-en un !</a></p>
         @endif
     </div>
 @endsection
