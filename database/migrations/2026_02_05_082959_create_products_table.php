@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('category', function (Blueprint $table) {
             $table->id();                    // Clé primaire auto-incrémentée
             $table->string('name');          // VARCHAR(255)
-            $table->text('description');     // TEXT
+            $table->text('description')->nullable();   // TEXT
             $table->decimal('price', 8, 2);  // DECIMAL(8,2) pour les prix
             $table->integer('stock');        // INTEGER
             $table->boolean('active')->default(true);

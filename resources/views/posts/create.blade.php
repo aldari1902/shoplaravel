@@ -45,46 +45,26 @@
 <body>
 <h1>Créer un nouveau produit</h1>
 
-{{-- Le formulaire envoie les données vers la route "posts.store" --}}
 <form action="{{ route('posts.store') }}" method="POST">
-
-    {{-- Protection CSRF : OBLIGATOIRE pour tous les formulaires Laravel --}}
     @csrf
+    <label for="name">Nom du produit :</label>
+    <input type="text" id="name" name="name" placeholder="Ex: La signature de Martin" required>
 
-    {{-- Champ Nom --}}
-    <div>
-        <label for="name">Nom du produit :</label>
-        <input type="text" id="name" name="name" placeholder="Ex: La signature de Martin" required>
-    </div>
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" rows="4"
+              placeholder="Décrivez le produit... exemple : il a encore oublié de signer..."></textarea>
 
-    {{-- Champ Description --}}
-    <div>
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" rows="4"
-                  placeholder="Décrivez le produit... exemple : il a encore oublié de signer..."></textarea>
-    </div>
+    <label for="price">Prix (€) :</label>
+    <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" required>
 
-    {{-- Champ Prix --}}
-    <div>
-        <label for="price">Prix (€) :</label>
-        <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" required>
-    </div>
+    <label for="stock">Quantité en stock :</label>
+    <input type="number" id="stock" name="stock" placeholder="Ex: 50" required>
 
-    {{-- Champ Stock --}}
-    <div>
-        <label for="stock">Quantité en stock :</label>
-        <input type="number" id="stock" name="stock" placeholder="Ex: 50" required>
-    </div>
+    <label>
+        <input type="checkbox" id="active" name="active" value="1" checked>
+        Produit actif (visible sur le site)
+    </label>
 
-    {{-- Champ Actif (checkbox) --}}
-    <div>
-        <label>
-            <input type="checkbox" id="active" name="active" value="1" checked>
-            Produit actif (visible sur le site)
-        </label>
-    </div>
-
-    {{-- Bouton de soumission --}}
     <div>
         <button type="submit">✓ Créer le produit</button>
     </div>

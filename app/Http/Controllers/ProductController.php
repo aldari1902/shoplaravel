@@ -3,114 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Chirp;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $products = Product::where('active', true)
+            ->orderBy('name')
+            ->get();
+
+        return view('posts.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('posts.create'); // Retourne la vue create.blade.php
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'message' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
         ]);
+        $validated['active'] = $request->boolean('active');
+        Product::create($validated);
+        return redirect()->route('posts.index')
+            ->with('success', 'Ça a enfin fonctionné ?????????');
+    }
 
-        Chirp::create([
-            'message' => $validated['message'],
+    public function show(Product $product)
+    {
+        return view('posts.show', compact('product'));
+    }
+
+    public function edit(Product $product)
+    {
+        return view('posts.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
         ]);
-        return redirect('/')->with('success', 'Chirp Created good job!');
+        $validated['active'] = $request->boolean('active');
+        $product->update($validated);
+        return redirect()->route('posts.index')
+            ->with('success', 'Produit modifié avec succès !');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $product->delete();
+        return redirect()->route('posts.index')
+            ->with('success', 'Produit supprimé avec succès !');
     }
 }
-
-
-//namespace App\Http\Controllers;
-//
-//use Illuminate\Http\Request;
-//
-//class ProductController extends Controller
-//{
-//    public function show($id)
-//    {
-//        return "Affichage du produit $id";
-//    }
-//
-//    public function index()
-//    {
-//        $products = [
-//            1 => ['name' => 'Lego Venator',
-//                'id' => 75367,
-//                'availability' => true,
-//                'price' => 649.99],
-//            2 => ['name' => 'Lego Barad-dûr',
-//                'id' => 10333,
-//                'availability' => false,
-//                'price' => 459.99],
-//            3 => ['name' => 'Lego Millenium Falcon',
-//                'id' => 75192,
-//                'availability' => true,
-//                'price' => 849.99],
-//            4 => ['name' => 'Lego Microfighter Rex',
-//                'id' => 75391,
-//                'availability' => true,
-//                'price' => 12.99],
-//            5 => ['name' => 'Lego Fondcombe',
-//                'id' => 10316,
-//                'availability' => true,
-//                'price' => 499.99]
-//        ];
-//
-//
-//        return view('products.index', compact('products'));
-//    }
-//}
-
-

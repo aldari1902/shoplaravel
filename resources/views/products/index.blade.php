@@ -46,3 +46,50 @@
     @endforeach
 
 @endsection
+
+@section('content')
+    <div class="products-container">
+        <h1>Liste des produits</h1>
+
+        <a href="{{ route('posts.create') }}" class="btn-create">➕ Créer un produit</a>
+
+        @if(isset($products) && $products->count() > 0)
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ Str::limit($product->description, 50) }}</td>
+                        <td>{{ number_format($product->price, 2) }} €</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>
+                            @if($product->active)
+                                <span class="badge badge-active">Actif</span>
+                            @else
+                                <span class="badge badge-inactive">Inactif</span>
+                            @endif
+                        </td>
+                        <td class="actions">
+                            <a href="{{ route('posts.edit', $product->id) }}" class="btn-edit">
+                                ✏️ Modifier
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            <p>Aucun produit pour le moment. <a href="{{ route('posts.create') }}">Créez-en un !</a></p>
+        @endif
+    </div>
+@endsection

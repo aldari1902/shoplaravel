@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
-class ProductController extends Controller
+class Product extends Model
 {
-    public function index()
-    {
-        $products = Product::where('active', true)
-            ->orderBy('name')
-            ->get();
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'stock',
+        'active'
+    ];
 
-        return view('products.index', compact('products'));
-    }
-
-    public function show($id)
-    {
-        $product = Product::findOrFail($id);
-
-        return view('products.show', compact('product'));
-    }
+    protected $casts = [
+        'active' => 'boolean',
+        'price' => 'decimal:2',
+    ];
 }
