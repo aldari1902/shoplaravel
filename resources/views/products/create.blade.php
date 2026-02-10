@@ -54,6 +54,9 @@
     <textarea id="description" name="description" rows="4"
               placeholder="Décrivez le produit... exemple : il a encore oublié de signer..."></textarea>
 
+    <label for="category">Categorie du produit :</label>
+    <input type="text" id="category" name="category" placeholder="Ex: Enfant, Adulte" required>
+
     <label for="price">Prix (€) :</label>
     <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" required>
 

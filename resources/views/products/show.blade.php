@@ -7,6 +7,7 @@
     <h1>{{ $product['name'] }}</h1>
 
     <h4>Description :{{ $product['description'] }}</h4>
+    <h4>Categorie :{{ $product['category'] }}</h4>
 
     <p>Prix : {{$product['price']}} €</p>
 

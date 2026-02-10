@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();                    // Clé primaire auto-incrémentée
             $table->string('name');          // VARCHAR(255)
             $table->text('description')->nullable();   // TEXT
+            $table->text('category')->nullable();
             $table->decimal('price', 8, 2);  // DECIMAL(8,2) pour les prix
             $table->integer('stock');        // INTEGER
             $table->boolean('active')->default(true);

@@ -41,6 +41,18 @@
             <div class="error">{{ $message }}</div>
             @enderror
 
+            {{-- Champ Category --}}
+            <label for="description">Category :</label>
+            <textarea
+                id="category"
+                name="category"
+                rows="5"
+                placeholder="Décrivez le produit..."
+            >{{ old('category', $product->category) }}</textarea>
+            @error('category')
+            <div class="error">{{ $message }}</div>
+            @enderror
+
             {{-- Prix --}}
             <label for="price">Prix (€) :</label>
             <input
