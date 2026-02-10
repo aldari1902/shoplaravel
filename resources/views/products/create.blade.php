@@ -68,6 +68,9 @@
     <div>
         <button type="submit">✓ Créer le produit</button>
     </div>
+    <div>
+        <a href="{{ route('products.index') }}" class="btn-secondary">Annuler</a>
+    </div>
 </form>
 </body>
 </html>

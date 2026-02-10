@@ -88,7 +88,7 @@
 
             {{-- Boutons --}}
             <div>
-                <button type="submit" class="btn-primary">💾 Enregistrer les modifications</button>
+                <button type="submit" class="btn-primary">Enregistrer modifications</button>
                 <a href="{{ route('products.index') }}" class="btn-secondary">Annuler</a>
             </div>
         </form>

@@ -3,24 +3,14 @@
 @section('title', 'ShopLaravel')
 
 @section('content')
-
-    @foreach ($products as $product)
-
-        <h1>{{ $product['name'] }}</h1>
-
-        <h4>Produit numéro : {{ $product['id'] }}</h4>
-
-        <p>Prix : {{$product['price']}} €</p>
-
-        @if ($product['availability'])
-            <p style="color: green;">Dispo</p>
-        @else
-            <p style="color: red;">Indispo</p>
-        @endif
-
-        <p> ----------------------------------------------------- </p>
-
-    @endforeach
+    <a href="{{ route('products.create') }}"
+       class="btn btn-success">
+        Nouveau produit
+    </a>
+    <br>
+    </br>
+    <br>
+    </br>
 
     @foreach($products as $product)
         <div class="col-md-4 mb-4">
@@ -40,6 +30,19 @@
                        class="btn btn-primary mt-2">
                         Voir détails
                     </a>
+                    <a href="{{ route('products.edit', $product->id) }}"
+                       class="btn btn-primary mt-2">
+                        Modifier</a>
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit"
+                                class="btn btn-danger mt-2"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">
+                            Supprimer
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -80,9 +83,7 @@
                             @endif
                         </td>
                         <td class="actions">
-                            <a href="{{ route('products.edit', $product->id) }}" class="btn-edit">
-                                ✏️ Modifier
-                            </a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn-edit">Modifier</a>
                         </td>
                     </tr>
                 @endforeach
