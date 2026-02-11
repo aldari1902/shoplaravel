@@ -45,18 +45,28 @@
 <body>
 <h1>Créer un nouveau produit</h1>
 
-<form action="{{ route('products.store') }}" method="POST">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<form action="{{ route('products.store') }}" method="POST" novalidate>
     @csrf
-    <label for="name">Nom du produit :</label>
-    <input type="text" id="name" name="name" placeholder="Ex: Patate" required>
+    <label for=" name
+">Nom du produit :</label>
+    <input type="text" id="name" name="name" placeholder="Ex: Patate" value="{{ old('name') }}">
 
     <label for="description">Description :</label>
     <textarea id="description" name="description" rows="2"
-              placeholder="Décrivez le produit.."></textarea>
+              placeholder="Décrivez le produit.." value="{{ old('name') }}"> {{ old('description') }} </textarea>
 
-    <label for="category_id">Catégorie :</label>
-
-    <select name="category_id" required>
+    <label for=" category_id">Catégorie :</label>
+    <select name="category_id">
         <option value="">-- Selectionner catégorie --</option>
         @foreach($categories as $category)
             <option value="{{ $category->id }}">
@@ -66,14 +76,14 @@
     </select>
 
     <label for="price">Prix (€) :</label>
-    <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" required>
+    <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" value="{{ old('price') }}>
 
-    <label for="stock">Quantité en stock :</label>
-    <input type="number" id="stock" name="stock" placeholder="Ex: 50" required>
+<label for=" stock">Quantité en stock :</label>
+    <input type="number" id="stock" name="stock" placeholder="Ex: 50" value="{{ old('stock') }}>
 
-    <label>
-        <input type="checkbox" id="active" name="active" value="1" checked>
-        Produit actif (visible sur le site)
+<label>
+    <input type=" checkbox" id="active" name="active" value="1" checked>
+    Produit actif (visible sur le site)
     </label>
 
     <div>
