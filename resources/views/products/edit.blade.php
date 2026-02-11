@@ -42,10 +42,10 @@
                 <label for="category_id">Catégorie :</label>
                 <select id="category_id" name="category_id" required>
                     <option value="">-- Sélectionner une catégorie --</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}"
-                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
+                    @foreach($category as $categoryy)
+                        <option value="{{ $categoryy->id }}"
+                            {{ old('category_id', $product->category_id) == $categoryy->id ? 'selected' : '' }}>
+                            {{ $categoryy->name }}
                         </option>
                     @endforeach
                 </select>

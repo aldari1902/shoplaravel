@@ -13,9 +13,11 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name' => 'Adulte',
+                'description' => 'Pour les adultes',
             ],
             [
                 'name' => 'Enfant',
+                'description' => 'Pour les enfants',
             ]
         ]);
     }
