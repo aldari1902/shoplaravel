@@ -73,3 +73,6 @@ use App\Http\Controllers\CategoryController;
 Route::get('/categories/{category}', [CategoryController::class, 'show'])
     ->name('categories.show');
 
+use App\Http\Controllers\CartController;
+
+Route::resource('cart', CartController::class);
