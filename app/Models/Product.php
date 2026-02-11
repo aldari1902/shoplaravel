@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
@@ -22,8 +21,8 @@ class Product extends Model
         'price' => 'decimal:2',
     ];
 
-    public function category(): BelongsTo|HasOne
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class)->HasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

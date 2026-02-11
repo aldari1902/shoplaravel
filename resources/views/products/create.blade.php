@@ -48,14 +48,18 @@
 <form action="{{ route('products.store') }}" method="POST">
     @csrf
     <label for="name">Nom du produit :</label>
-    <input type="text" id="name" name="name" placeholder="Ex: La signature de Martin" required>
+    <input type="text" id="name" name="name" placeholder="Ex: Patate" required>
 
     <label for="description">Description :</label>
     <textarea id="description" name="description" rows="4"
-              placeholder="Décrivez le produit... exemple : il a encore oublié de signer..."></textarea>
+              placeholder="Décrivez le produit.."></textarea>
 
     <label for="category">Categorie du produit :</label>
-    <input type="text" id="category" name="category" placeholder="Ex: Adulte" required>
+    <select name="Category" id="category-select">
+        <option value="">--Veuillez choisir une categorie--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
 
     <label for="price">Prix (€) :</label>
     <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" required>
