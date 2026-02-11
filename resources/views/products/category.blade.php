@@ -6,25 +6,6 @@
     <div class="container" style="padding: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <h1><strong>Liste des produits :</strong></h1>
-
-            <label>
-                <input type="checkbox"
-                       name="show_adult"
-                       value="1"
-                       {{ request('show_adult') ? 'checked' : '' }}
-                       onchange="this.form.submit()">
-                Adulte
-            </label>
-
-            <label>
-                <input type="checkbox"
-                       name="show_enfant"
-                       value="1"
-                       {{ request('show_enfant') ? 'checked' : '' }}
-                       onchange="this.form.submit()">
-                Enfant
-            </label>
-
             <a href="{{ route('products.create') }}"
                style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
                 Créer nouveau produit
