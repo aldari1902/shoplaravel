@@ -7,23 +7,14 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <h1><strong>Liste des produits :</strong></h1>
 
-            <label>
-                <input type="checkbox"
-                       name="show_adult"
-                       value="1"
-                       {{ request('show_adult') ? 'checked' : '' }}
-                       onchange="this.form.submit()">
-                Adulte
-            </label>
-
-            <label>
-                <input type="checkbox"
-                       name="show_enfant"
-                       value="1"
-                       {{ request('show_enfant') ? 'checked' : '' }}
-                       onchange="this.form.submit()">
-                Enfant
-            </label>
+            <div style="display: flex; gap: 10px;">
+                <a href="{{ route('categories.show', 1) }}"
+                   style="background-color: dodgerblue; color: white; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                    Adulte</a>
+                <a href="{{ route('categories.show', 2) }}"
+                   style="background-color: dodgerblue; color: white; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                    Enfant</a>
+            </div>
 
             <a href="{{ route('products.create') }}"
                style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
@@ -39,7 +30,7 @@
                             style="border: 3px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; display: flex; flex-direction: column;">
                             <h5 style="font-size: 1.25rem; margin-bottom: 10px;">{{ $product->name }}</h5>
                             <p style="color: #6c757d; margin-bottom: 15px;">{{ Str::limit($product->description, 100) }}</p>
-                            <p style="color: #6c757d; margin-bottom: 15px;">{{ Str::limit($product->category, 100) }}</p>
+                            <p style="color: #6c757d; margin-bottom: 15px;">{{ Str::limit($product->category->name, 100) }}</p>
 
                             <div style="margin-top: auto;">
                                 <p style="color: #0d6efd; font-weight: bold; font-size: 1.5rem; margin-bottom: 10px;">

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container" style="padding: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div style="display: flex; gap: 30px;">
             <h1><strong>Liste des produits :</strong></h1>
             <a href="{{ route('products.create') }}"
                style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
@@ -15,7 +15,7 @@
         @if(isset($products) && $products->count() > 0)
             <div style="display: flex; flex-wrap: wrap; gap: 30px;">
                 @foreach($products as $product)
-                    <div style="width: calc(25% - 23px); min-width: 250px; margin-bottom: 20px;">
+                    <div>
                         <div
                             style="border: 3px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; display: flex; flex-direction: column;">
                             <h5 style="font-size: 1.25rem; margin-bottom: 10px;">{{ $product->name }}</h5>

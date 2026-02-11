@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    /**
+     * Display the specified category with its products.
+     */
+    public function show(Category $category)
+    {
+        $products = $category->products()
+            ->latest()
+            ->paginate(12);
+
+        return view('categories.show', compact('category', 'products'));
+    }
+}

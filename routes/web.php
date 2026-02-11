@@ -65,3 +65,11 @@ Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
 
 Route::resource('products', ProductController::class);
+
+//------------------------------------------------------------------------------------------------
+
+use App\Http\Controllers\CategoryController;
+
+Route::get('/categories/{category}', [CategoryController::class, 'show'])
+    ->name('categories.show');
+

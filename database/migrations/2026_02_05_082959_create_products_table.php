@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();                    // Clé primaire auto-incrémentée
-            $table->string('name');          // VARCHAR(255)
-            $table->text('description')->nullable();   // TEXT
-            $table->text('category')->nullable();
-            $table->decimal('price', 8, 2);  // DECIMAL(8,2) pour les prix
-            $table->integer('stock');        // INTEGER
+            $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->decimal('price', 8, 2);
+            $table->integer('stock');
             $table->boolean('active')->default(true);
-            $table->timestamps();            // created_at et updated_at
+            $table->timestamps();
         });
     }
 

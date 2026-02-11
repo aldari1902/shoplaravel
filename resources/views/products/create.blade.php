@@ -51,14 +51,18 @@
     <input type="text" id="name" name="name" placeholder="Ex: Patate" required>
 
     <label for="description">Description :</label>
-    <textarea id="description" name="description" rows="4"
+    <textarea id="description" name="description" rows="2"
               placeholder="Décrivez le produit.."></textarea>
 
-    <label for="category">Categorie du produit :</label>
-    <select name="Category" id="category-select">
-        <option value="">--Veuillez choisir une categorie--</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
+    <label for="category_id">Catégorie :</label>
+
+    <select name="category_id" required>
+        <option value="">-- Selectionner catégorie --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">
+                {{ $category->name }}
+            </option>
+        @endforeach
     </select>
 
     <label for="price">Prix (€) :</label>
