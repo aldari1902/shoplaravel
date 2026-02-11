@@ -23,11 +23,12 @@
         </div>
 
         @if(isset($products) && $products->count() > 0)
-            <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: flex-start;">
                 @foreach($products as $product)
-                    <div style="width: calc(25% - 23px); min-width: 250px; margin-bottom: 20px;">
+                    <div style="flex: 1 1 calc(25% - 30px); min-width: 250px;">
                         <div
                             style="border: 3px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; display: flex; flex-direction: column;">
+
                             <h5 style="font-size: 1.25rem; margin-bottom: 10px;">{{ $product->name }}</h5>
                             <p style="color: #6c757d; margin-bottom: 15px;">{{ Str::limit($product->description, 100) }}</p>
                             <p style="color: #6c757d; margin-bottom: 15px;">{{ Str::limit($product->category->name, 100) }}</p>
@@ -41,52 +42,62 @@
                                     @if($product->stock > 10)
                                         <span
                                             style="background-color: limegreen; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                            En stock ({{ $product->stock }})
-                                        </span>
+                                    En stock ({{ $product->stock }})
+                                </span>
                                     @elseif ($product->stock < 10 && $product->stock > 0)
                                         <span
                                             style="background-color: orange; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                            Derniers articles ({{ $product->stock }})
-                                        </span>
+                                    Derniers articles ({{ $product->stock }})
+                                </span>
                                     @else
                                         <span
                                             style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                            Rupture de stock ({{ $product->stock }})
-                                        </span>
+                                    Rupture de stock ({{ $product->stock }})
+                                </span>
                                     @endif
 
                                     @if(isset($product->active))
                                         @if($product->active)
                                             <span
                                                 style="background-color: #17a2b8; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                                Actif
-                                            </span>
+                                        Actif
+                                    </span>
                                         @else
                                             <span
                                                 style="background-color: #6c757d; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                                Inactif
-                                            </span>
+                                        Inactif
+                                    </span>
                                         @endif
                                     @endif
                                 </div>
 
-                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+                                    <form action="{{ route('products.create', $product->id) }}" method="POST"
+                                          style="margin: 0;">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit"
+                                                style="width: 100%; background-color: #28a745; color: white; padding: 4px; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer;">
+                                            Ajouter au panier
+                                        </button>
+                                    </form>
+
                                     <a href="{{ route('products.show', $product->id) }}"
-                                       style="background-color: lightblue; color: green; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                                       style="background-color: lightblue; color: green; padding: 4px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem;">
                                         Voir détails
                                     </a>
 
                                     <a href="{{ route('products.edit', $product->id) }}"
-                                       style="background-color: lightblue; color: blue; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                                       style="background-color: lightblue; color: blue; padding: 4px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem;">
                                         Modifier
                                     </a>
 
-                                    <form action="{{ route('products.destroy', $product->id) }}"
-                                          method="POST" style="margin: 0;">
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                          style="margin: 0;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                                style="width: 100%; background-color: lightblue; color: red; padding: 8px; text-align: center; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer;"
+                                                style="width: 100%; background-color: orangered; color: black; padding: 4px; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer;"
                                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">
                                             Supprimer
                                         </button>
@@ -98,7 +109,6 @@
                 @endforeach
             </div>
 
-            {{-- Pagination si nécessaire --}}
             @if(method_exists($products, 'links'))
                 <div style="display: flex; justify-content: center; margin-top: 30px;">
                     {{ $products->links() }}
@@ -107,9 +117,7 @@
         @else
             <div
                 style="background-color: #d1ecf1; color: #0c5460; padding: 20px; border-radius: 5px; text-align: center;">
-                <h4>Aucun produit pour le moment</h4>
-                <p>Commencez par <a href="{{ route('products.create') }}">créer votre premier produit</a> !</p>
+                <h4>Aucun produits :'(</h4>
             </div>
-        @endif
-    </div>
+    @endif
 @endsection

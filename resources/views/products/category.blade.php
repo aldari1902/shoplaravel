@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ShopLaravel')
+@section('title', 'Category')
 
 @section('content')
     <div class="container" style="padding: 20px;">

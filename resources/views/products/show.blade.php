@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ShopLaravel')
+@section('title', 'ShowShow')
 
 @section('content')
 

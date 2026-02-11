@@ -16,6 +16,7 @@
         <a href="{{ route('products.index') }}" class="ml-4">Products</a>
         <a href="{{ route('about') }}" class="ml-4">About</a>
         <a href="{{ route('contact') }}" class="ml-4">Contact</a>
+        <a href="{{ route('cart.index') }}" class="ml-4">Panier</a>
 
     </nav>
 </header>
