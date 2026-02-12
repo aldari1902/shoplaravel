@@ -35,22 +35,27 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Ajouté au panier.');
     }
 
-    public function update(Product $product, Request $request)
+    public function update($id, Request $request)
     {
-        $quantity = $request->input('quantity', 1);
-        $cart = session('cart', []);
+        $cart = session()->get('cart', []);
 
-        if (session()->has('cart') && isset($cart[$product->id])) {
-            $cart[$product->id]['quantity'] = $quantity;
+        if (isset($cart[$id])) {
+            $quantity = (int)$request->input('quantity');
 
-            // 1. Mettre à jour le panier dans la session
-            session(['cart' => $cart]);
+            if ($quantity < 1) {
+                $quantity = 1;
+            }
+
+            $cart[$id]['quantity'] = $quantity;
+
+            session()->put('cart', $cart);
         }
 
         return redirect()->route('cart.index')->with('success', 'Panier mis à jour');
     }
 
-    public function remove(Product $product)
+
+    public function remove(Request $product)
     {
         $cart = session('cart', []);
 
