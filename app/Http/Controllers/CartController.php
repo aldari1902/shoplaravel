@@ -14,8 +14,9 @@ class CartController extends Controller
         return view('cart.index', compact('cart'));
     }
 
-    public function add(Product $product, Request $request)
+    public function add($id, Request $request)
     {
+        $product = Product::findOrFail($id);
         $quantity = $request->input('quantity', 1);
         $cart = session('cart', []);
 
@@ -27,11 +28,7 @@ class CartController extends Controller
                 'price' => $product->price,
                 'quantity' => $quantity,
             ];
-
-            return redirect()->route('cart.index')
-                ->with('success', 'Ajouté au panier');
         }
-
         session(['cart' => $cart]);
         session()->put('cart', $cart);
 

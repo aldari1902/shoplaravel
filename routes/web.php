@@ -75,4 +75,6 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])
 
 use App\Http\Controllers\CartController;
 
-Route::resource('cart', CartController::class);
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+

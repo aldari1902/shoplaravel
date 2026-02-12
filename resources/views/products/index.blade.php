@@ -72,10 +72,9 @@
                                 </div>
 
                                 <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
-                                    <form action="{{ route('products.create', $product->id) }}" method="POST"
+                                    <form action="{{ route('cart.add', $product->id) }}" method="POST"
                                           style="margin: 0;">
                                         @csrf
-                                        <input type="hidden" name="quantity" value="1">
                                         <button type="submit"
                                                 style="width: 100%; background-color: #28a745; color: white; padding: 4px; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer;">
                                             Ajouter au panier
