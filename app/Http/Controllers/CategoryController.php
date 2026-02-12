@@ -13,7 +13,6 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $products = $category->products()
-            ->latest()
             ->paginate(12);
 
         return view('categories.show', compact('category', 'products'));

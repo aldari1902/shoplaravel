@@ -9,6 +9,18 @@
             {{ $category->name }}
         </h1>
 
+        <div style="display: flex; gap: 10px;">
+            <a href="{{ route('products.index') }}"
+               style="background-color: dodgerblue; color: white; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                Retirer filtre</a>
+            <a href="{{ route('categories.show', 1) }}"
+               style="background-color: dodgerblue; color: white; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                Adulte</a>
+            <a href="{{ route('categories.show', 2) }}"
+               style="background-color: dodgerblue; color: white; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">
+                Enfant</a>
+        </div>
+
         @if($category->description)
             <p class="text-gray-600">
                 {{ $category->description }}
@@ -16,14 +28,15 @@
         @endif
     </div>
 
+
     @if($products->count())
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" style="display: flex" ;>
 
-            @if(isset($products) && $products->count() > 0)
-                <div style="display: flex; flex-wrap: wrap; gap: 30px;">
-                    @foreach($products as $product)
-                        <div style="width: calc(25% - 23px); min-width: 250px; margin-bottom: 20px;">
+            @if($products->count() > 0)
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    @foreach($category->products as $product)
+                        <div style="width: calc(25% - 23px); min-width: 250px; margin-bottom: 10px;">
                             <div
                                 style="border: 3px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; display: flex; flex-direction: column;">
                                 <h5 style="font-size: 1.25rem; margin-bottom: 10px;">{{ $product->name }}</h5>
@@ -67,6 +80,16 @@
                                             @endif
                                         @endif
                                     </div>
+
+                                    <form action="{{ route('products.create', $product->id) }}" method="POST"
+                                          style="margin: 0; margin-bottom: 10px">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit"
+                                                style="width: 100%; background-color: #28a745; color: white; padding: 4px; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer;">
+                                            Ajouter au panier
+                                        </button>
+                                    </form>
 
                                     <div style="display: flex; flex-direction: column; gap: 10px;">
                                         <a href="{{ route('products.show', $product->id) }}"

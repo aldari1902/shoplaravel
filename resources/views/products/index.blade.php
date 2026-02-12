@@ -5,7 +5,7 @@
 @section('content')
     <div class="container" style="padding: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-            <h1><strong>Liste des produits :</strong></h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2"><strong>Liste des produits :</strong></h1>
 
             <div style="display: flex; gap: 10px;">
                 <a href="{{ route('categories.show', 1) }}"

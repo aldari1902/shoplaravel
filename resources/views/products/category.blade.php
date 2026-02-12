@@ -60,6 +60,7 @@
                                     @endif
                                 </div>
 
+
                                 <div style="display: flex; flex-direction: column; gap: 10px;">
                                     <a href="{{ route('products.show', $product->id) }}"
                                        style="background-color: lightblue; color: green; padding: 8px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 0.85rem; border: none; cursor: pointer; display: block;">

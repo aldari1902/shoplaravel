@@ -13,14 +13,6 @@ class ProductController extends Controller
     public function index(Request $request): Factory|View
     {
         $query = Product::where('active', true);
-
-        if ($request->has('show_adult') && $request->show_adult == 1) {
-            $query->where('category', 'Adulte');
-        }
-        if ($request->has('show_enfant') && $request->show_enfant == 1) {
-            $query->where('category', 'Enfant');
-        }
-
         $products = $query->orderBy('name')->get();
 
         return view('products.index', compact('products'));
