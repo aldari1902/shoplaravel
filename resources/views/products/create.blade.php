@@ -76,14 +76,14 @@
     </select>
 
     <label for="price">Prix (€) :</label>
-    <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" value="{{ old('price') }}>
+    <input type="number" id="price" name="price" step="0.01" placeholder="Ex: 99.99" value="{{ old('price') }}">
 
-<label for=" stock">Quantité en stock :</label>
-    <input type="number" id="stock" name="stock" placeholder="Ex: 50" value="{{ old('stock') }}>
+    <label for=" stock">Quantité en stock :</label>
+    <input type="number" id="stock" name="stock" placeholder="Ex: 50" value="{{ old('stock') }}">
 
-<label>
-    <input type=" checkbox" id="active" name="active" value="1" checked>
-    Produit actif (visible sur le site)
+    <label>
+        <input type="checkbox" id="active" name="active" value="1" checked>
+        Produit actif (visible sur le site)
     </label>
 
     <div>
